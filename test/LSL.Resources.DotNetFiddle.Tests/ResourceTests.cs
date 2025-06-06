@@ -12,7 +12,7 @@ public class ResourceTests
     public void JsonTestClassResource_ShouldBeTheExpectedValue()
     {
         var type = typeof(JsonTestClass);
-        JsonSerializer.Deserialize(GetStream($"{type.FullName}.json"), type)
+        JsonSerializer.Deserialize(GetStream($".{type.FullName}.json"), type)
             .Should()
             .BeEquivalentTo(new JsonTestClass
             {
@@ -71,10 +71,10 @@ public class ResourceTests
     static Stream GetStream(string name)
     {
         var assembly = typeof(JsonTestClass).Assembly;
-        var names = assembly.GetManifestResourceNames();
+        var names = assembly.GetManifestResourceNames().OrderBy(n => n);
         var resourceName = names
             .Where(n => n.EndsWith(name))
-            .Single();
+            .First();
 
         return assembly.GetManifestResourceStream(resourceName);
     }
