@@ -28,6 +28,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\readme.md" Pack="true" PackagePath=""/>
+  </ItemGroup>   
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources/**/*.*" />
   </ItemGroup>
 </Project>
